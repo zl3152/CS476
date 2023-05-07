@@ -1,0 +1,42 @@
+1. create the table for scale.csv using HiveQL
+    CREATE EXTERNAL TABLE ERQ(id STRING, sex STRING, age int, complete STRING, dt STRING, A1 int, A2 int, A3 int, A4 int, A5 int, A6 int, A7 int, A8 int, A9 int, A10 int, A11 int, A12 int) 
+    ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\n' 
+    STORED AS TEXTFILE 
+    LOCATION  'hdfs://nyu-dataproc-m/user/zl3152_nyu_edu/ERQ';
+
+1.1 same table for SDS
+    CREATE EXTERNAL TABLE SDS(id STRING, sex STRING, age int, complete STRING, dt STRING, A1 int, A2 int, A3 int, A4 int, A5 int, A6 int, A7 int, A8 int, A9 int, A10 int, A11 int, A12 int, A13 int, A14 int, A15 int, A16 int, A17 int, A18 int, A19 int, A20 int) 
+    ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\n' 
+    STORED AS TEXTFILE 
+    LOCATION  'hdfs://nyu-dataproc-m/user/zl3152_nyu_edu/SDS';
+
+
+2. Join two tables using presto to find out the relationship betweem those who have an abnormal sleep duration and their response to 
+   the question "I keep my emotions to myself"
+    select sq.id, sq.sleep_duration, sq.a, erq.A2 
+    from hive.zl3152_nyu_edu.sq 
+    join hive.zl3152_nyu_edu.erq on sq.id = erq.id
+    where sq.a = '1'
+    order by erq.A2 asc;
+
+3. Join two tables using presto to find out the relationship betweem those who have an abnormal sleep duration and their response to 
+   the question "When I’m faced with a stressful situation, I make myself think about it in a way that helps me stay calm."
+    select sq.id, sq.sleep_duration, sq.a, erq.A5
+    from hive.zl3152_nyu_edu.sq 
+    join hive.zl3152_nyu_edu.erq on sq.id = erq.id
+    where sq.a = '1'
+    order by erq.A5 asc;
+
+4. Join two tables using presto to find out the relationship betweem those who have an abnormal sleep duration and their response to 
+   the question "When I am feeling negative emotions, I make sure not to express them."
+    select sq.id, sq.sleep_duration, sq.a, erq.A9
+    from hive.zl3152_nyu_edu.sq 
+    join hive.zl3152_nyu_edu.erq on sq.id = erq.id
+    where sq.a = '1'
+    order by erq.A9 asc;
+
+

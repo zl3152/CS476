@@ -1,0 +1,18 @@
+ 1. query time in bed per gender
+ select sex, avg(time_in_bed) from hive.zl3152_nyu_edu.sq
+ GROUP BY sex;
+
+2. query time in bed per age
+select age, avg(time_in_bed) from hive.zl3152_nyu_edu.sq
+ GROUP BY age
+ order by age asc;
+
+3. query deep sleep duration per gender
+  select sex, avg(sleep_duration) from hive.zl3152_nyu_edu.sq
+ GROUP BY sex;
+
+4. query sleep duration per age
+ select age, avg(sleep_duration) from hive.zl3152_nyu_edu.sq
+ GROUP BY age
+  order by age asc;
+

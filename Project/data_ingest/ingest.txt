@@ -1,0 +1,35 @@
+
+Ingest data ERQ.csv (this is the same for sleepquality.csv, and since I did it for prev homework, I omit the code and command )
+    1. upload my csv data to hdfs
+        • hdfs dfs -put ERQ.csv
+    2. upload and compile my mapper, reducer, driver code to clean ERQ.csv into .class file 
+        • javac -classpath opencsv-5.7.1.jar:`yarn classpath`:. -d . cleanERQMapper.java
+        • javac -classpath opencsv-5.7.1.jar:`yarn classpath`:. -d . cleanERQReducer.java
+        • javac -classpath `yarn classpath`:. -d . cleanERQ.java
+    3. generate the .jar file
+        • jar -cvf cleanERQ.jar cleanERQ*.class
+    4. generate the output into the directory above
+        • hadoop jar cleanERQ.jar cleanERQ ERQ.csv output_project_ERQ
+    5. Store the output in a csv and put it in a separate directory:
+        • hdfs dfs -mkdir ERQ
+        • hdfs dfs -cat output_project_ERQ/part-r-00000 > ERQ.csv 
+        • hdfs dfs -put ERQ.csv ERQ
+
+ 2. upload my csv data to hdfs
+        • hdfs dfs -put SDS.csv
+    2. upload and compile my mapper, reducer, driver code to clean SDS.csv into .class file 
+        • javac -classpath opencsv-5.7.1.jar:`yarn classpath`:. -d . cleanSDSMapper.java
+        • javac -classpath opencsv-5.7.1.jar:`yarn classpath`:. -d . cleanSDSReducer.java
+        • javac -classpath `yarn classpath`:. -d . cleanSDS.java
+    3. generate the .jar file
+        • jar -cvf cleanSDS.jar cleanSDS*.class
+    4. generate the output into the directory above
+        • hadoop jar cleanSDS.jar cleanSDS SDS.csv output_project_SDS
+    5. Store the output in a csv and put it in a separate directory:
+        • hdfs dfs -mkdir SDS
+        • hdfs dfs -cat output_project_SDS/part-r-00000 > SDS.csv 
+        • hdfs dfs -put SDS.csv SDS
+
+
+
+
